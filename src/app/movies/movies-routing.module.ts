@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MovieLayoutComponent } from './layout/movie-layout/movie-layout.component';
 import { MoviePageComponent } from './pages/movie-page/movie-page.component';
 import { MovieFavoriteComponent } from './pages/movie-favorite/movie-favorite.component';
+import { MoreInformationMovieComponent } from './components/more-information-movie/more-information-movie.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: 'favorite',
         component: MovieFavoriteComponent,
+      },
+      {
+        path: 'more-information/:imdbID',
+        component: MoreInformationMovieComponent,
       },
     ],
   },

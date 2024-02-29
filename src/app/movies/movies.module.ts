@@ -8,7 +8,7 @@ import { MoviePageComponent } from './pages/movie-page/movie-page.component';
 import { SearchMovieComponent } from './components/search-movie/search-movie.component';
 import { MovieFavoriteComponent } from './pages/movie-favorite/movie-favorite.component';
 import { RouterModule } from '@angular/router';
-import { ModalMovieComponent } from './components/modal-movie/modal-movie.component';
+import { MoreInformationMovieComponent } from './components/more-information-movie/more-information-movie.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import { ModalMovieComponent } from './components/modal-movie/modal-movie.compon
     MoviePageComponent,
     SearchMovieComponent,
     MovieFavoriteComponent,
-    ModalMovieComponent,
+
+    MoreInformationMovieComponent,
   ],
   imports: [CommonModule, MoviesRoutingModule, RouterModule],
 })
