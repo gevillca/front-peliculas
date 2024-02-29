@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
 import { Search } from '../../interfaces/movie.interface';
 
@@ -9,6 +9,7 @@ import { Search } from '../../interfaces/movie.interface';
 })
 export class MoviePageComponent {
   private movieService = inject(MovieService);
+
   movies: Search[] = [];
 
   searchByTitle(title: string) {

@@ -4,6 +4,7 @@ import { MovieLayoutComponent } from './layout/movie-layout/movie-layout.compone
 import { MoviePageComponent } from './pages/movie-page/movie-page.component';
 import { MovieFavoriteComponent } from './pages/movie-favorite/movie-favorite.component';
 import { MoreInformationMovieComponent } from './components/more-information-movie/more-information-movie.component';
+import { isAuthenticatedGuard } from '../auth/guards/is-authenticated.guard';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       {
         path: 'favorite',
         component: MovieFavoriteComponent,
+        canActivate: [isAuthenticatedGuard],
       },
       {
         path: 'more-information/:imdbID',

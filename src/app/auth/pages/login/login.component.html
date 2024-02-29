@@ -19,14 +19,15 @@
         <label
           for="email"
           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >Your email</label
+          >Your user</label
         >
         <input
-          type="email"
-          name="email"
-          id="email"
+          type="text"
+          name="text"
+          id="user"
+          formControlName="user"
           class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-          placeholder="name@company.com"
+          placeholder="user"
           required
         />
       </div>
@@ -39,24 +40,14 @@
         <input
           type="password"
           name="password"
+          formControlName="password"
           id="password"
           placeholder="••••••••"
           class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
           required
         />
       </div>
-      <div class="flex items-start">
-        <div class="flex items-center h-5">
-          <input
-            id="remember"
-            aria-describedby="remember"
-            name="remember"
-            type="checkbox"
-            class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:focus:ring-primary-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
-            required
-          />
-        </div>
-      </div>
+
       <button
         type="submit"
         class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-white focus:outline-none bg-blue-700 rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"

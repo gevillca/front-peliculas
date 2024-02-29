@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
-import { Movies, Search } from '../../interfaces/movie.interface';
+import { Search } from '../../interfaces/movie.interface';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-movie-layout',
@@ -9,12 +10,17 @@ import { Movies, Search } from '../../interfaces/movie.interface';
 })
 export class MovieLayoutComponent {
   private movieService = inject(MovieService);
+  private authService = inject(AuthService);
+  public isLoggedIn = this.authService.authStatus;
+
   movies: Search[] = [];
   searchByTitle(title: string) {
-    // console.log({ title });
     this.movieService.searchMovie(title).subscribe((resp) => {
-      console.log(resp);
       this.movies = resp;
     });
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 }
