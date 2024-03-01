@@ -6,6 +6,12 @@
 
    - `https://nodejs.org/en `
 
+2. Clonar el repositorio
+
+```
+https://github.com/gevillca/front-peliculas.git
+```
+
 ## Instalar Dependencias
 
 Asegúrate de tener Node.js y npm instalados en tu máquina. Luego, ejecuta el siguiente comando para instalar las dependencias del proyecto:
