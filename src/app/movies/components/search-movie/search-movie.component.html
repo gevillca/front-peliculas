@@ -17,13 +17,6 @@
       #txtInput
       (keyup.enter)="searchMovie(txtInput.value)"
     />
-
-    <div
-      *ngIf="txtInput.value && txtInput.value.length < 3"
-      class="text-red-500 text-sm mt-2"
-    >
-      El título debe tener al menos 3 caracteres.
-    </div>
   </div>
 
   <!-- <input

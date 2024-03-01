@@ -46,15 +46,10 @@ export class MovieService {
   }
   getMoviesFavorite(user: User) {
     const url = `${this.apiLocal}/peliculas/lista-favorito/${user.id}`;
-    return this.http.get<MovieFavoriteResponse[]>(url).pipe(
-      map((resp) =>
-        resp.map((movie) => ({
-          Title: movie.title,
-          Year: movie.year,
-          imdbID: movie.imdbID,
-          Poster: movie.poster,
-        }))
-      )
-    );
+    return this.http.get<MovieFavoriteResponse[]>(url);
+  }
+  removeFavorite(id: string) {
+    const url = `${this.apiLocal}/peliculas/favoritas/eliminar/${id}`;
+    return this.http.delete<MovieResponse>(url);
   }
 }

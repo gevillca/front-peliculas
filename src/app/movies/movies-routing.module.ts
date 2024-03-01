@@ -3,8 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { MovieLayoutComponent } from './layout/movie-layout/movie-layout.component';
 import { MoviePageComponent } from './pages/movie-page/movie-page.component';
 import { MovieFavoriteComponent } from './pages/movie-favorite/movie-favorite.component';
-import { MoreInformationMovieComponent } from './components/more-information-movie/more-information-movie.component';
+
 import { isAuthenticatedGuard } from '../auth/guards/is-authenticated.guard';
+import { MoreInformationMovieComponent } from './pages/more-information-movie/more-information-movie.component';
+import { MoreInformationFavoriteComponent } from './pages/more-information-favorite/more-information-favorite.component';
 
 const routes: Routes = [
   {
@@ -23,6 +25,10 @@ const routes: Routes = [
       {
         path: 'more-information/:imdbID',
         component: MoreInformationMovieComponent,
+      },
+      {
+        path: 'favorite/more-information-user/:imdbID',
+        component: MoreInformationFavoriteComponent,
       },
     ],
   },

@@ -1,1 +1,107 @@
-<p>register works!</p>
+<div
+  class="flex flex-col items-center justify-center px-6 pt-8 mx-auto md:h-screen pt:mt-0 dark:bg-gray-900"
+>
+  <!-- Card -->
+  <div
+    class="w-full max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow dark:bg-gray-800"
+  >
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Registro</h2>
+    <form class="mt-8 space-y-6" [formGroup]="myForm" (ngSubmit)="register()">
+      <div>
+        <label
+          for="usuario"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Usuario</label
+        >
+        <input
+          type="text"
+          name="usuario"
+          id="usuario"
+          formControlName="usuario"
+          class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+          placeholder="usuario"
+          required
+        />
+      </div>
+      <div>
+        <label
+          for="nombres"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Nombres</label
+        >
+        <input
+          type="text"
+          name="nombres"
+          id="nombres"
+          formControlName="nombres"
+          class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+          placeholder="names"
+          required
+        />
+      </div>
+      <div>
+        <label
+          for="primer_apellido"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Primer Apellido</label
+        >
+        <input
+          type="text"
+          name="primer_apellido"
+          id="primer_apellido"
+          class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+          placeholder="Primer apellido"
+          formControlName="primer_apellido"
+          required
+        />
+      </div>
+      <div>
+        <label
+          for="segundo_apellido"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Segundo Apellido</label
+        >
+        <input
+          type="text"
+          name="segundo_apellido"
+          id="segundo_apellido"
+          class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+          placeholder="Segundo Apellido"
+          formControlName="segundo_apellido"
+          required
+        />
+      </div>
+      <div>
+        <label
+          for="password"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Contraseña</label
+        >
+        <input
+          type="contrasena"
+          name="contrasena"
+          id="contrasena"
+          placeholder="••••••••"
+          class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+          formControlName="contrasena"
+          required
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-white focus:outline-none bg-blue-700 rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+      >
+        Crear cuenta
+      </button>
+      <div class="text-sm font-medium text-gray-500 dark:text-gray-400">
+        Ya tienes una cuenta?
+        <a
+          [routerLink]="['/auth/login']"
+          class="text-primary-700 hover:underline dark:text-primary-500"
+          >Ingresar</a
+        >
+      </div>
+    </form>
+  </div>
+</div>

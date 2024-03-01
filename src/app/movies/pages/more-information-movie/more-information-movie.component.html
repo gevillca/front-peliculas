@@ -1,0 +1,51 @@
+<hr />
+
+<div class="flex flex-col justify-center items-center mt-6 mb-2">
+  <div class="bg-white rounded-lg overflow-hidden max-w-lg w-full border">
+    <img
+      [src]="movieInformation?.Poster"
+      alt="Mountain"
+      class="w-full h-64 object-cover"
+    />
+    <div class="p-6">
+      <h2 class="text-2xl font-bold text-gray-800 mb-2">
+        Title:
+        <span class="font-normal">{{ movieInformation?.Title }}</span>
+      </h2>
+      <div class="flex justify-between items-center">
+        <div class="flex items-center">
+          <span class="text-gray-800 font-semibold">
+            Year:
+            <span class="font-normal">{{ movieInformation?.Year }}</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center mt-2">
+        <div class="flex items-center">
+          <span class="text-gray-800 font-semibold">
+            Actors:
+            <span class="font-normal">{{ movieInformation?.Actors }}</span>
+          </span>
+        </div>
+      </div>
+      <div class="flex justify-between items-center mt-2">
+        <div class="flex items-center">
+          <span class="text-gray-800 font-semibold">
+            Director:
+            <span class="font-normal">{{ movieInformation?.Director }}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="flex justify-center items-center">
+      <button
+        type="button"
+        class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900"
+      >
+        Añadir a favoritos
+      </button>
+    </div>
+  </div>
+</div>

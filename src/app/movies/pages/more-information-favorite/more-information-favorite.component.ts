@@ -1,14 +1,14 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MovieService } from '../../services/movie.service';
 import { MovieInformation } from '../../interfaces/movie-information.interface';
+import { MovieService } from '../../services/movie.service';
 
 @Component({
-  selector: 'app-more-information-movie',
-  templateUrl: './more-information-movie.component.html',
-  styleUrls: ['./more-information-movie.component.css'],
+  selector: 'app-more-information-favorite',
+  templateUrl: './more-information-favorite.component.html',
+  styleUrls: ['./more-information-favorite.component.css'],
 })
-export class MoreInformationMovieComponent implements OnInit {
+export class MoreInformationFavoriteComponent {
   private activatedRoute = inject(ActivatedRoute);
   private movieService = inject(MovieService);
 
@@ -20,7 +20,6 @@ export class MoreInformationMovieComponent implements OnInit {
         .getMoreInformationMovie(imdbID)
         .subscribe((information) => {
           this.movieInformation = information;
-          console.log(information);
         });
     });
   }

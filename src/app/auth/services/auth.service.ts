@@ -7,6 +7,8 @@ import {
   AuthStatus,
   LoginResponse,
   CheckTokenResponse,
+  RegisterUser,
+  RegisterResponse,
 } from '../interfaces';
 
 @Injectable({
@@ -31,6 +33,33 @@ export class AuthService {
     const body = { usuario: user, contrasena: password };
     return this.http.post<LoginResponse>(url, body).pipe(
       map(({ usuario, token }) => this.setAuthentication(usuario, token)),
+      catchError((err) => throwError(() => err.error.message))
+    );
+  }
+
+  register({
+    contrasena,
+    nombres,
+    primer_apellido,
+    usuario,
+    segundo_apellido,
+  }: RegisterUser): Observable<boolean> {
+    const url = `${this.apiLocal}/usuario/register`;
+    const body = {
+      contrasena,
+      nombres,
+      primer_apellido,
+      usuario,
+      segundo_apellido,
+    };
+    return this.http.post<RegisterResponse>(url, body).pipe(
+      // tap((resp) => {
+      //   console.log(resp);
+      // }),
+      map(({ usuario, token }) => {
+        if (!usuario && !token) return false;
+        return true;
+      }),
       catchError((err) => throwError(() => err.error.message))
     );
   }

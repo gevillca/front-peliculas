@@ -42,9 +42,6 @@ export class CardMovieComponent {
         // Muestra el "toast alert"
       });
   }
-  removeFavorite(movie: Search) {
-    console.log({ movie });
-  }
 
   private saveFavoriteData() {
     const user = this.authService.currentUser();

@@ -2,6 +2,7 @@ import { Component, OnInit, computed, inject } from '@angular/core';
 import { AuthService } from '../../../../app/auth/services/auth.service';
 import { Search } from '../../interfaces/movie.interface';
 import { MovieService } from '../../services/movie.service';
+import { MovieFavoriteResponse } from '../../interfaces/movie-favorite-response.interface';
 
 @Component({
   selector: 'app-movie-favorite',
@@ -16,13 +17,9 @@ export class MovieFavoriteComponent implements OnInit {
     this.listMoviesFavorites();
   }
   public user = computed(() => this.authService.currentUser());
+  public updateFlag = false;
 
-  public movies: Search[] = [];
-
-  searchByTitle(title: string) {
-    // console.log({ title });
-    this.movieService.searchMovie(title).subscribe((data) => {});
-  }
+  public movies: MovieFavoriteResponse[] = [];
 
   listMoviesFavorites() {
     const user = this.authService.currentUser();
@@ -32,5 +29,9 @@ export class MovieFavoriteComponent implements OnInit {
         console.log(resp);
       });
     }
+  }
+  searchByTitle(title: string) {
+    // console.log({ title });
+    this.movieService.searchMovie(title).subscribe((data) => {});
   }
 }

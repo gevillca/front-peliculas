@@ -14,13 +14,13 @@ export class LoginComponent {
   private authService = inject(AuthService);
 
   myForm: FormGroup = this.fb.group({
-    user: ['user'],
-    password: ['123456'],
+    usuario: ['user'],
+    contrasena: ['123456'],
   });
 
   login() {
-    const { user, password } = this.myForm.value;
-    this.authService.login(user, password).subscribe({
+    const { usuario, contrasena } = this.myForm.value;
+    this.authService.login(usuario, contrasena).subscribe({
       next: () => this.router.navigate(['/movie']),
       error: (err) => {
         console.log(err);
