@@ -14,8 +14,8 @@ export class LoginComponent {
   private authService = inject(AuthService);
 
   myForm: FormGroup = this.fb.group({
-    usuario: ['user'],
-    contrasena: ['123456'],
+    usuario: [''],
+    contrasena: [''],
   });
 
   login() {
@@ -26,7 +26,6 @@ export class LoginComponent {
         console.log(err);
       },
     });
-    console.log(this.myForm.value);
     //
   }
 }

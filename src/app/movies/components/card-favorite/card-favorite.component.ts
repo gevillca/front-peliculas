@@ -1,10 +1,9 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { MovieFavorite } from '../../interfaces/movie-favorite.interface';
-import { Search } from '../../interfaces/movie.interface';
-import { AuthService } from 'src/app/auth/services/auth.service';
+
 import { MovieService } from '../../services/movie.service';
 import { MovieFavoriteResponse } from '../../interfaces/movie-favorite-response.interface';
-import { MovieResponse } from '../../interfaces/movie-response.interface';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-card-favorite',
@@ -15,7 +14,7 @@ export class CardFavoriteComponent {
   @Input()
   public movies: MovieFavoriteResponse[] = [];
 
-  // private authService = inject(AuthService);
+  private authService = inject(AuthService);
   private movieService = inject(MovieService);
 
   movieUser?: MovieFavorite;
@@ -24,7 +23,9 @@ export class CardFavoriteComponent {
   errorMessage?: string;
 
   removeFavorite(movie: MovieFavoriteResponse) {
-    console.log(movie);
-    this.movieService.removeFavorite(movie.id).subscribe((resp) => {});
+    const user = this.authService.currentUser();
+    if (user) {
+      this.movieService.removeFavorite(movie, user.id).subscribe((resp) => {});
+    }
   }
 }

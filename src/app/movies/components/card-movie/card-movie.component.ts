@@ -39,7 +39,6 @@ export class CardMovieComponent {
           imdbID: movie.imdbID,
         };
         this.saveFavoriteData();
-        // Muestra el "toast alert"
       });
   }
 

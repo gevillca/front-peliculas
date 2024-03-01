@@ -2,7 +2,7 @@
   <h2 class="text-2xl font-extrabold dark:text-white text-center">
     Mis peliculas
   </h2>
-  <app-search-movie (onValue)="searchByTitle($event)" />
+  <app-search-movie (onValue)="searchByTitleFavorite($event)" />
   <div>
     <hr class="h-px my-8 bg-gray-200" />
     <app-card-favorite [movies]="movies"></app-card-favorite>

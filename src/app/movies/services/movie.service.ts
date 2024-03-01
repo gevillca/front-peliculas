@@ -1,13 +1,22 @@
 import { Injectable, inject } from '@angular/core';
 import { environments } from '../../../environments/environments';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Movies, Search } from '../interfaces/movie.interface';
-import { Observable, catchError, map, tap, throwError } from 'rxjs';
-import { MovieInformation } from '../interfaces/movie-information.interface';
-
-import { MovieResponse } from '../interfaces/movie-response.interface';
+import {
+  BehaviorSubject,
+  Observable,
+  catchError,
+  map,
+  tap,
+  throwError,
+} from 'rxjs';
 import { User } from 'src/app/auth/interfaces';
-import { MovieFavoriteResponse } from '../interfaces/movie-favorite-response.interface';
+import {
+  MovieFavoriteResponse,
+  MovieInformation,
+  MovieResponse,
+  FavoriteUserResponse,
+} from '../interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +24,11 @@ import { MovieFavoriteResponse } from '../interfaces/movie-favorite-response.int
 export class MovieService {
   public apiMovie: string = environments.apiMovie;
   public apiLocal: string = environments.apiLocal;
-
   private http = inject(HttpClient);
+
+  private moviesSubject = new BehaviorSubject<MovieFavoriteResponse[]>([]);
+  movies$: Observable<MovieFavoriteResponse[]> =
+    this.moviesSubject.asObservable();
 
   searchMovie(title: string): Observable<Search[] | []> {
     return this.http.get<Movies>(`${this.apiMovie}s=${title}`).pipe(
@@ -48,8 +60,36 @@ export class MovieService {
     const url = `${this.apiLocal}/peliculas/lista-favorito/${user.id}`;
     return this.http.get<MovieFavoriteResponse[]>(url);
   }
-  removeFavorite(id: string) {
+
+  getMoviesFavoriteUser(term: string, limit: number, offset: number) {
+    const url = `${this.apiLocal}/peliculas/buscar`;
+
+    let params = new HttpParams()
+      .set('termino', term)
+      .set('limit', limit.toString())
+      .set('offset', offset.toString());
+
+    return this.http.get<FavoriteUserResponse[]>(url, { params }).pipe(
+      tap((resp) => {
+        console.log(resp);
+      })
+    );
+  }
+
+  removeFavorite(movie: MovieFavoriteResponse, user_id: string) {
+    const { id } = movie;
     const url = `${this.apiLocal}/peliculas/favoritas/eliminar/${id}`;
+    this.getUpdatedMoviesFavorite(user_id).subscribe((updatedMovies) => {
+      this.moviesSubject.next(updatedMovies);
+    });
+
     return this.http.delete<MovieResponse>(url);
+  }
+
+  private getUpdatedMoviesFavorite(
+    user_id: string
+  ): Observable<MovieFavoriteResponse[]> {
+    const url = `${this.apiLocal}/peliculas/lista-favorito/${user_id}`;
+    return this.http.get<MovieFavoriteResponse[]>(url);
   }
 }

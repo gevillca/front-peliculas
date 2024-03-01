@@ -1,8 +1,9 @@
 import { Component, OnInit, computed, inject } from '@angular/core';
 import { AuthService } from '../../../../app/auth/services/auth.service';
-import { Search } from '../../interfaces/movie.interface';
+
 import { MovieService } from '../../services/movie.service';
 import { MovieFavoriteResponse } from '../../interfaces/movie-favorite-response.interface';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-movie-favorite',
@@ -12,12 +13,21 @@ import { MovieFavoriteResponse } from '../../interfaces/movie-favorite-response.
 export class MovieFavoriteComponent implements OnInit {
   private authService = inject(AuthService);
   private movieService = inject(MovieService);
+  private moviesSubscription: Subscription = new Subscription();
 
   ngOnInit(): void {
     this.listMoviesFavorites();
+    this.subscribeToMovieChanges();
+  }
+
+  ngOnDestroy(): void {
+    this.moviesSubscription.unsubscribe();
   }
   public user = computed(() => this.authService.currentUser());
   public updateFlag = false;
+
+  limit: number = 10;
+  offset: number = 0;
 
   public movies: MovieFavoriteResponse[] = [];
 
@@ -26,12 +36,23 @@ export class MovieFavoriteComponent implements OnInit {
     if (user) {
       this.movieService.getMoviesFavorite(user).subscribe((resp) => {
         this.movies = resp;
-        console.log(resp);
       });
     }
   }
-  searchByTitle(title: string) {
-    // console.log({ title });
-    this.movieService.searchMovie(title).subscribe((data) => {});
+  searchByTitleFavorite(title: string) {
+    this.movieService
+      .getMoviesFavoriteUser(title, this.limit, this.offset)
+      .subscribe((data: any) => {
+        this.movies = data.peliculas;
+      });
+  }
+
+  private subscribeToMovieChanges() {
+    this.moviesSubscription.unsubscribe();
+    this.moviesSubscription = this.movieService.movies$.subscribe(
+      (updatedMovies) => {
+        this.movies = updatedMovies;
+      }
+    );
   }
 }

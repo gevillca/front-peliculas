@@ -1,27 +1,43 @@
-# FrontPeliculas
+# Guía de Configuración del Front Pelicuas
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.11.
+## Pasos para la instalacion
 
-## Development server
+1. Tener instalado Node para su sistema operativo seguir los pasos de instalacion de su sitio web en base a su sistema operativo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+   - `https://nodejs.org/en `
 
-## Code scaffolding
+## Instalar Dependencias
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Asegúrate de tener Node.js y npm instalados en tu máquina. Luego, ejecuta el siguiente comando para instalar las dependencias del proyecto:
 
-## Build
+```bash
+npm install
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Renombrar Variable de Entorno
 
-## Running unit tests
+En la carpeta `src/environments/`, renombra el archivo `environments.sample.ts` a `environments.ts`.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Configurar la variabes de entorno
 
-## Running end-to-end tests
+```
+ apiLocal: 'URL_DE_TU_BACKEND'
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
+ apiMovie: 'URL_API_MOVIE'
+```
 
-## Further help
+## Correr la aplicacion
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+ng serve
+```
+
+La aplicación estará disponible en [http://localhost:4200/](http://localhost:4200/).
+
+## Comando para hacer el Build
+
+```bash
+ng build
+```
